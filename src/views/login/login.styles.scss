@@ -1,0 +1,40 @@
+@import "../../utils/constant.styles.scss";
+
+.login-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+
+    .form-control {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 10px 25px 5px;
+        width: 512px;
+
+        .header {
+            background-color: $colorMain;
+            font-size: 2em;
+            text-align: center;
+            color: #FFF;
+            padding: 10px;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+            width: 100%;
+
+            input {
+                width: 80%;
+                margin: auto;
+            }
+
+            &.buttons {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}
