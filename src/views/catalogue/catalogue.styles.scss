@@ -1,0 +1,17 @@
+@import "../../utils/constant.styles.scss";
+
+.catalogue-view {
+    .header {
+        align-items: center;
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+
+        input.search-engine {
+            border: 1px solid $colorBlack;
+            border-radius: 25px;
+            padding: 8px;
+            width: 60%;
+        }
+    }
+}

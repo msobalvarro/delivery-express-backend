@@ -15,7 +15,18 @@ aside.panel-navigation {
         text-decoration: none;
         text-align: center;
         transition: $transition;
+        position: relative;
         width: 100%;
+
+        .badge {
+            background-color: $colorGreen;
+            border-radius: 50%;
+            color: #FFF;
+            padding: 5px 10px;
+            position: absolute;
+            top: 20%;
+            right: 10%;
+        }
 
 
         &:hover {

@@ -52,3 +52,16 @@ export const globalStore = {
         }
     }
 }
+
+/**
+ * Reducer para estados de react `(useReducer)`
+ * 
+ * @param {*} state 
+ * @param {*} action 
+ */
+export const reducer = (state, action) => {
+    return {
+        ...state,
+        [action.type]: action.payload
+    }
+}
