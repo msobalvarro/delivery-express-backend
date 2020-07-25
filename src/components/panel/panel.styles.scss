@@ -1,0 +1,25 @@
+@import "../../utils/constant.styles.scss";
+
+aside.panel-navigation {
+    background-color: $colorMain;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 3.7em);
+    width: 256px;
+
+    a.item-navigation {
+        background-color: transparent;
+        color: #FFF;
+        padding: 1em;
+        margin: 10px 0;
+        text-decoration: none;
+        text-align: center;
+        transition: $transition;
+        width: 100%;
+
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    }
+}

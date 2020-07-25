@@ -13,6 +13,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
 }
 
 code {
@@ -100,4 +101,14 @@ a {
 #root {
   height: 100vh;
   width: 100%;
+
+
+  .content-app {
+    display: flex;
+
+    .view {
+      flex: 1;
+      padding: 1em;
+    }
+  }
 }

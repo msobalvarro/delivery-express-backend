@@ -1,0 +1,11 @@
+@import "../../utils/constant.styles.scss";
+
+nav.navigation-bar {
+    align-items: center;
+    background-color: $colorMain;
+    color: #FFF;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1em 2em;
+}
