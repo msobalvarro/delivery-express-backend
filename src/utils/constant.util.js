@@ -1,6 +1,11 @@
 import axios from "axios"
 import jwt from "jwt-simple"
 
+// Store and action from redux
+import store from "../store/index"
+
+import { SETLOADER } from "../store/actionsTypes"
+
 /**Direeccion de servidor backemd */
 const SERVER_ADDRESS = "http://localhost:8080"
 
@@ -65,3 +70,8 @@ export const reducer = (state, action) => {
         [action.type]: action.payload
     }
 }
+
+/**
+ *  Funcion que activa/desactiva precarga general de la aplicacion
+ */
+export const loader = (payload = false) => store.dispatch({ type: SETLOADER, payload })

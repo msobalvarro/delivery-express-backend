@@ -9,7 +9,7 @@ aside.panel-navigation {
 
     a.item-navigation {
         background-color: transparent;
-        color: #FFF;
+        color: $colorWhite;
         padding: 1em;
         margin: 10px 0;
         text-decoration: none;
@@ -21,7 +21,7 @@ aside.panel-navigation {
         .badge {
             background-color: $colorGreen;
             border-radius: 50%;
-            color: #FFF;
+            color: $colorWhite;
             padding: 5px 10px;
             position: absolute;
             top: 20%;

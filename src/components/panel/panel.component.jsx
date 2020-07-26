@@ -16,6 +16,10 @@ const Panel = () => {
                 Catalogo
             </Link>
 
+            <Link to={routes.PRODUCTS} className="item-navigation">
+                Productos
+            </Link>
+
             <Link to={routes.ORDERS} className="item-navigation">
                 Pedidos
 

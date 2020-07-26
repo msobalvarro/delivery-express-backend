@@ -1,5 +1,6 @@
 const ROUTES = {
     INDEX: "/",
+    PRODUCTS: "/products",
     ORDERS: "/orders",
     DEALERS: "/dealers",
     COMBOS: "/combos",
