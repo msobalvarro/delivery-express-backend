@@ -1,7 +1,7 @@
-import React, { useReducer } from "react"
+import React, { useReducer, useEffect } from "react"
 
 // import constants and functions
-import { reducer } from "../../utils/constant.util"
+import { reducer, http, loader } from "../../utils/constant.util"
 
 // import assets and styles
 import "./catalogue.styles.scss"
@@ -15,17 +15,52 @@ const initialState = {
 
     // new product
     name: "",
-    category: 0,
+    category: "",
     estimatedTime: "",
     price: "",
+
+    // data config component
+    categories: []
 }
 
 const CatalogueView = () => {
     const [state, dispatch] = useReducer(reducer, initialState)
 
+    /**
+     * Metodo que cierra modal para agregar producto
+     */
     const onCancelAdd = () => {
         dispatch({ type: "showAddedProduct", payload: false })
     }
+
+    /**
+     * Metodo que configura el component
+     */
+    const configurateComponent = async () => {
+        try {
+            // loader mode on
+            loader(true)
+
+            const { data } = await http.get("/category")
+
+            if (data.error) {
+                throw data.message
+            }
+
+            // Guardamos las categorias
+            dispatch({ type: "categories", payload: data.categories })
+        } catch (error) {
+            // messag
+        } finally {
+            // loader off mode
+            loader(false)
+        }
+    }
+
+
+    useEffect(() => {
+        configurateComponent()
+    }, [])
 
     return (
         <div className="catalogue-view view">
@@ -66,7 +101,10 @@ const CatalogueView = () => {
                     <div className="row">
                         <span className="legend">Categoria</span>
                         <select value={state.category} onChange={e => dispatch({ type: "category", payload: e.target.value })} className="text-input">
-                            <option value={0}>Nueva categoria</option>
+                            <option value="">Sin categoria</option>
+                            {
+                                state.categories.map((category, index) => <option key={index} value={category}>{category}</option>)
+                            }
                         </select>
                     </div>
 
