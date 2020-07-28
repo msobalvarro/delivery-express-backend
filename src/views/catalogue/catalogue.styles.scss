@@ -13,44 +13,5 @@
       padding: 8px;
       width: 60%;
     }
-  }
-
-  .modal-component {
-    h2 {
-      color: $colorMain;
-      text-align: center;
-    }
-
-    .row {
-      display: flex;
-      flex-direction: column;
-      margin: 2em 0;
-
-      &.columns {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        
-        .col {
-          width: 45%;
-          display: flex;
-          flex-direction: column;
-        }
-      }
-
-      input,
-      select {
-        border-bottom-color: $colorBlack;
-
-        &:focus {
-          border-bottom-color: $colorMain;
-        }
-      }
-
-      span.legend {
-        color: $colorBlack;
-        margin-bottom: 5px;
-      }
-    }
-  }
+  }  
 }

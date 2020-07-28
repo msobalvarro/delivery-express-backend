@@ -25,77 +25,74 @@ import loadingAnimation from "../animations/loading.json"
 
 const App = () => {
 
-  // loader global
-  const [loader, setLoader] = useState(false)
+    // loader global
+    const [loader, setLoader] = useState(false)
 
-  // estado que indica si el usuario esta logueado
-  const [session, setSession] = useState(false)
+    // estado que indica si el usuario esta logueado
+    const [session, setSession] = useState(false)
 
 
-  /**
-   * Funcion que se ejecuta para verificar algunos procesos
-   */
-  const configurateComponent = async () => {
-    const payload = globalStore.get()
+    /**
+     * Funcion que se ejecuta para verificar algunos procesos
+     */
+    const configurateComponent = async () => {
+        const payload = globalStore.get()
 
-    // Comprueba si hay datos retornados en el payload
-    if (Object.keys(payload).length > 0) {
+        // Comprueba si hay datos retornados en el payload
+        if (Object.keys(payload).length > 0) {
 
-      // Creamos el dispatch para el storage de redux
-      store.dispatch({
-        type: SETSTORAGE,
-        payload
-      })
+            // Creamos el dispatch para el storage de redux
+            store.dispatch({
+                type: SETSTORAGE,
+                payload
+            })
 
-      // Le decimos que el usuario esta logueado
-      setSession(true)
-    } else {
-      setSession(false)
-      // Destruimos el sorage
-      store.dispatch({ type: DELETESTORAGE })
+            // Le decimos que el usuario esta logueado
+            setSession(true)
+        } else {
+            setSession(false)
+            // Destruimos el sorage
+            store.dispatch({ type: DELETESTORAGE })
+        }
     }
-  }
 
-  useEffect(() => {
-    configurateComponent()
+    useEffect(() => {
+        configurateComponent()
 
-    store.subscribe(() => {
-      const { loader } = store.getState()
+        store.subscribe(() => {
+            const { loader } = store.getState()
 
-      console.log(loader)
+            setLoader(loader)
+        })
+    }, [])
 
+    return (
+        <>
+            {
+                session &&
+                <BrowserRouter>
+                    <Navbar />
 
-      setLoader(loader)
-    })
-  }, [])
+                    <div className="content-app">
+                        <Panel />
 
-  return (
-    <>
-      {
-        session &&
-        <BrowserRouter>
-          <Navbar />
-
-          <div className="content-app">
-            <Panel />
-
-            <RootView />
-          </div>
-        </BrowserRouter>
-      }
+                        <RootView />
+                    </div>
+                </BrowserRouter>
+            }
 
 
-      {
-        !session &&
-        <LoginView />
-      }
+            {
+                !session &&
+                <LoginView />
+            }
 
 
-      <Modal isVisible={loader}>
-        <Lottie style={{ borderRadius: 25 }} options={{ loop: true, animationData: loadingAnimation }} height={512} width={512} />
-      </Modal>
-    </>
-  )
+            <Modal isVisible={loader}>
+                <Lottie style={{ borderRadius: 25 }} options={{ loop: true, animationData: loadingAnimation }} height={512} width={512} />
+            </Modal>
+        </>
+    )
 }
 
 export default App

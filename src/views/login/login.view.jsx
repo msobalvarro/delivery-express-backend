@@ -7,8 +7,6 @@ import validator from "validator"
 // import styles and assets
 import "./login.styles.scss"
 import Swal from "sweetalert2"
-import store from "../../store"
-import { SETSTORAGE } from "../../store/actionsTypes"
 
 const initialState = {
     email: "",
@@ -48,9 +46,6 @@ const LoginView = () => {
 
             // guardamos la sesion
             await globalStore.set(data)
-
-            // guardamos los datos de sesion en redux
-            dispatch({ type: SETSTORAGE, payload: data })
 
             // recargamos la ventana
             window.location.reload()

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 
 // import constants and functions
 import moment from "moment"
+import { LogOut } from "../../utils/constant.util"
 
 // import assets and styles
 import "./navbar.styles.scss"
@@ -9,6 +10,11 @@ import "./navbar.styles.scss"
 
 const Navbar = () => {
     const [time, setTime] = useState(new Date())
+
+    /**
+     * Metodo que se ejecuta cuando el usuario cierra sesion
+     */
+    const killSession = () => LogOut()
 
     useEffect(() => {
         // Actualizamos la hora cada segundo
@@ -27,9 +33,8 @@ const Navbar = () => {
                 {moment(time).format("HH:mm | DD/MM/YY")}
             </span>
             
-            <span className="data-user">
-                <span>username</span>
-                <span className="dropdown-menu"></span>
+            <span onClick={killSession} className="data-user">
+                <span>Cerrar sesion</span>
             </span>
         </nav>
     )

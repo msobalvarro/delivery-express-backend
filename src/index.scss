@@ -104,6 +104,31 @@ a {
   }
 }
 
+input.file-input {
+  position: relative;
+  height: 5em;
+  overflow: visible;
+
+  // &:
+
+  &::after {
+    align-items: center;
+    background-color: $colorWhite;
+    border: 2px dashed $colorMain;
+    content: "Arrastra tus archivos";
+    color: $colorMain;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    opacity: 1;
+    top: 0;
+    height: 97%;
+    position: absolute;
+    left: 0;
+    width: 99%;
+  }
+}
+
 #root {
   height: 100vh;
   width: 100%;
