@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react"
+import React, { useReducer } from "react"
 
 // import constants and functions
 import { reducer } from "../../utils/constant.util"
@@ -33,13 +33,7 @@ const CatalogueView = () => {
                 <h2>Mi Catalogo</h2>
 
                 <div className="catalogue"></div>
-            </div>
-
-            <div className="block">
-                <h2>Mi Catalogo</h2>
-
-                <div className="catalogue"></div>
-            </div>            
+            </div>          
         </div>
     )
 }

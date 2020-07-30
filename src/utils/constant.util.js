@@ -7,7 +7,8 @@ import store from "../store/index"
 import { SETLOADER } from "../store/actionsTypes"
 
 /**Direeccion de servidor backemd */
-const SERVER_ADDRESS = "http://localhost:8000"
+// const SERVER_ADDRESS = "http://localhost:8000"
+const SERVER_ADDRESS = "https://delichina.uc.r.appspot.com"
 
 /**keystore para guardar los datos en localstore */
 const keyStorage = "@storage"

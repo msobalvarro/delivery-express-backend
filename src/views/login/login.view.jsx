@@ -28,7 +28,7 @@ const LoginView = () => {
 
             // validamos el correo electronico si es correcto
             if (!validator.isEmail(email)) {
-                throw "El correo electronico no es correcto"
+                throw String("El correo electronico no es correcto")
             }
 
             loader(true)

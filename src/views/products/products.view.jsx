@@ -14,6 +14,7 @@ const inialState = {
     // state for config componet
     filter: "",
     categories: [],
+    products: {},
     showAddedProduct: false,
 
 
@@ -42,32 +43,32 @@ const ProductsView = () => {
      */
     const onSubmitAdd = async () => {
         try {
-            const form = new FormData()            
+            const form = new FormData()
 
             // validamos en nombre del producto
             if (state.name.length === 0) {
-                throw "Ingrese un nombre"
+                throw String("Ingrese un nombre")
             }
 
             // validamos si el precio es correcto
             if (isNaN(parseFloat(state.price)) || state.price.length === 0) {
-                throw "Ingresa un precio valido"
+                throw String("Ingresa un precio valido")
             }
 
 
             // validamos si la existencia es correcta
             if (isNaN(parseInt(state.stock)) || state.stock.length === 0) {
-                throw "Ingresa una cantidad de existencia valida"
+                throw String("Ingresa una cantidad de existencia valida")
             }
 
             // validamos si el tiempo estimado es correcto
-            if (isNaN( parseInt(state.estimatedTime)) || state.estimatedTime.length === 0) {
-                throw "Ingresa un tiempo estimado valido"
+            if (isNaN(parseInt(state.estimatedTime)) || state.estimatedTime.length === 0) {
+                throw String("Ingresa un tiempo estimado valido")
             }
 
             // validamos si el usuario ya selecciono una foto
             if (state.photo === null) {
-                throw "Eliga una foto"
+                throw String("Eliga una foto")
             }
 
 
@@ -89,7 +90,7 @@ const ProductsView = () => {
 
             // verificamos si no hay errores
             if (data.error) {
-                throw data.message
+                throw String(data.message)
             }
 
             // verificamos si la respuesta es correcta
@@ -106,7 +107,7 @@ const ProductsView = () => {
                 dispatch({ type: "stock", payload: "" })
                 dispatch({ type: "time", payload: "" })
             } else {
-                throw "El producto no se ha podido procesar, contacte a soporte"
+                throw String("El producto no se ha podido procesar, contacte a soporte")
             }
         } catch (error) {
             Swal.fire("Ha ocurrido un error", error.toString(), "error")
@@ -123,14 +124,20 @@ const ProductsView = () => {
             // loader mode on
             loader(true)
 
-            const { data } = await http.get("/category")
+            const { data } = await http.get("/product")
 
             if (data.error) {
                 throw data.message
             }
 
+            const categories = Object.keys(data)
+
             // Guardamos las categorias
-            dispatch({ type: "categories", payload: data.categories })
+            dispatch({ type: "categories", payload: categories })
+
+            // Guardamos todos los productos
+            dispatch({ type: "products", payload: data })
+
         } catch (error) {
             // messag
         } finally {
@@ -153,7 +160,7 @@ const ProductsView = () => {
             if (!image.type.search("image") > -1) {
                 dispatch({ type: "photo", payload: image })
             } else {
-                throw "Formato de imagen no soportado"
+                throw String("Formato de imagen no soportado")
             }
         } catch (error) {
             Swal.fire("Ha ocurrido un error", error, "error")
@@ -179,6 +186,18 @@ const ProductsView = () => {
                 <button className="button" onClick={_ => dispatch({ type: "showAddedProduct", payload: true })}>Agregar</button>
             </div>
 
+            {/* {
+                Object.keys(state.products).map(categoryName => {
+                    return (
+                        <div className="block" key={categoryName}>
+                            {
+                                Object.values(state.products)
+                            }
+                        </div>
+                    )
+                })
+            } */}
+
             <Modal isVisible={state.showAddedProduct}>
                 <div className="window">
                     <h2>Datos de nuevo producto</h2>
@@ -193,7 +212,7 @@ const ProductsView = () => {
                         <select value={state.category} onChange={e => dispatch({ type: "category", payload: e.target.value })} className="text-input">
                             <option value="">Sin categoria</option>
                             {
-                                state.categories.map((category, index) => <option key={index} value={category}>{category}</option>)
+                                state.categories.map((category, index) => category.toLowerCase() !== "otros" && <option key={index} value={category}>{category}</option>)
                             }
                         </select>
                     </div>
@@ -209,7 +228,7 @@ const ProductsView = () => {
                         </div>
 
                         <div className="col">
-                            <span className="legend">Exitencia</span>
+                            <span className="legend">Existencia</span>
                             <input type="number" className="text-input" placeholder="10" value={state.stock} onChange={e => dispatch({ type: "stock", payload: e.target.value })} />
                         </div>
                     </div>
