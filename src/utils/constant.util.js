@@ -8,7 +8,7 @@ import { SETLOADER } from "../store/actionsTypes"
 
 /**Direeccion de servidor backemd */
 // const SERVER_ADDRESS = "http://localhost:8000"
-const SERVER_ADDRESS = "https://delichina.uc.r.appspot.com"
+const SERVER_ADDRESS = "http://restauranteanonuevochino.com"
 
 /**keystore para guardar los datos en localstore */
 const keyStorage = "@storage"
@@ -20,7 +20,7 @@ export const http = axios.create({
     baseURL: SERVER_ADDRESS,
     validateStatus: (status) => {
         if (status === 401) {
-            LogOut()
+            // LogOut()
         }
 
         return status >= 200 && status < 300;
